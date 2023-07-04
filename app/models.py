@@ -1,11 +1,15 @@
-from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
-
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
-Base = db.Model
+appointments_services = Table('appointments_services', db.Model.metadata,
+    Column('appointment_id', Integer, ForeignKey('appointments.id')),
+    Column('service_id', Integer, ForeignKey('services.id')),
+    Column('user_id', Integer, ForeignKey('users.id'))
+)
+
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -17,7 +21,12 @@ class User(db.Model):
     image = Column(String(5000))
 
     # The services relationship
-    services = relationship('Service', secondary='appointments_services', backref='users')
+    services = relationship('Service',
+                            secondary=appointments_services,
+                            backref='users',
+                            primaryjoin='User.id == appointments_services.c.user_id',
+                            secondaryjoin='Service.id == appointments_services.c.service_id')
+
 
 class Service(db.Model):
     __tablename__ = 'services'
@@ -26,21 +35,18 @@ class Service(db.Model):
     name = Column(String(50))
     description = Column(String(255))
 
+    # The appointments relationship
+    appointments = relationship('Appointment', secondary=appointments_services)
+
+
 class Appointment(db.Model):
     __tablename__ = 'appointments'
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    service_ids = Column(String(255))
+    user_id = Column(Integer, ForeignKey('users.id'))  # Added foreign key constraint
 
     # The user relationship
     user = relationship('User', backref='appointments')
 
     # The services relationship
-    services = relationship('Service', secondary='appointments_services', backref='appointments')
-
-# The appointments_services table
-appointments_services = Table('appointments_services', Base.metadata,
-    Column('appointment_id', Integer, ForeignKey('appointments.id')),
-    Column('service_id', Integer, ForeignKey('services.id'))
-)
+    services = relationship('Service', secondary=appointments_services, backref='service_appointments')
