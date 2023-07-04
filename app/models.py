@@ -1,12 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
-from sqlalchemy.orm import relationship
+
+
 db = SQLAlchemy()
-appointments_services = Table('appointments_services', db.Model.metadata,
-    Column('appointment_id', Integer, ForeignKey('appointments.id')),
-    Column('service_id', Integer, ForeignKey('services.id')),
-    Column('user_id', Integer, ForeignKey('users.id'))
-)
+
+Base = db.Model
+
 class User(db.Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
@@ -15,11 +14,8 @@ class User(db.Model):
     password = Column(String(255))
 
     # The services relationship
-    services = relationship('Service',
-                            secondary=appointments_services,
-                            backref='users',
-                            primaryjoin='User.id == appointments_services.c.user_id',
-                            secondaryjoin='Service.id == appointments_services.c.service_id')
+    services = relationship('Service', secondary='appointments_services', backref='users')
+
 class Service(db.Model):
     __tablename__ = 'services'
     id = Column(Integer, primary_key=True)
@@ -27,13 +23,20 @@ class Service(db.Model):
     name = Column(String(50))
     price = Column(Integer)
     description = Column(String(255))
-    # The appointments relationship
-    appointments = relationship('Appointment', secondary=appointments_services)
+
 class Appointment(db.Model):
     __tablename__ = 'appointments'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))  # Added foreign key constraint
+    user_id = Column(Integer, ForeignKey('users.id'))
+    service_ids = Column(String(255))
+
     # The user relationship
     user = relationship('User', backref='appointments')
     # The services relationship
-    services = relationship('Service', secondary=appointments_services, backref='service_appointments')
+    services = relationship('Service', secondary='appointments_services', backref='appointments')
+
+# The appointments_services table
+appointments_services = Table('appointments_services', Base.metadata,
+    Column('appointment_id', Integer, ForeignKey('appointments.id')),
+    Column('service_id', Integer, ForeignKey('services.id'))
+)
