@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -15,26 +14,9 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Create an object with the login data
-    const data = {
-      email: email,
-      password: password,
-    };
-
-    // Make a POST request to the login endpoint
-    axios
-      .post('/login', data)
-      .then((response) => {
-        // Handle the response from the server
-        console.log(response.data);
-        // Show a success message or redirect the user to a new page
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.error(error);
-        // Show an error message to the user
-      });
+    // Perform login logic here
+    // You can make an API request to your backend server to handle the login
+    console.log('Login form submitted');
   };
 
   return (
@@ -73,27 +55,9 @@ function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Create an object with the signup data
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    // Make a POST request to the signup endpoint
-    axios
-      .post('/signup', data)
-      .then((response) => {
-        // Handle the response from the server
-        console.log(response.data);
-        // Show a success message or redirect the user to a new page
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.error(error);
-        // Show an error message to the user
-      });
+    // Perform signup logic here
+    // You can make an API request to your backend server to handle the signup
+    console.log('Signup form submitted');
   };
 
   return (
