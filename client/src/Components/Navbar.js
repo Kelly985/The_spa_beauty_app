@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SignupForm from './signup';
 import LoginForm from './login';
-import Appointment from './appointments';
+import Appointment from './Appointments';
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,8 +32,11 @@ function Navbar() {
       <nav className="nav1">
         <ul className="navlink-left">
           <li>
-            <a className="navlink" href="/home">
+            <a className="navlink" href="/">
               Home
+            </a>
+              <a className="navlink" href="/Services">
+              Services
             </a>
             <a className="navlink" href="/contact">
               Contact
