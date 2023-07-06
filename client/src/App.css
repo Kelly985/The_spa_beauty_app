@@ -240,10 +240,12 @@ img {
   margin-left: 30%;
   margin-top: 5%;
   justify-content: space-between;
+  gap: 100px;
 }
 
 .service-card {
   width: 200px;
+  gap: 100px;
   margin-bottom: 20px;
   /* Adjust the value to set the desired vertical spacing between cards */
   padding: 10px;
