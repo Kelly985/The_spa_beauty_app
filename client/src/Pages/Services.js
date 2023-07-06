@@ -21,7 +21,7 @@ import React, { useEffect, useState } from 'react';function Body() {
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p>Price: ${service.price}</p>
-            
+            <button>BOOK APPOINTMENT </button>
             </div>
         ))}
         </div>
