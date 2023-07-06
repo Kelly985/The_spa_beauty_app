@@ -11,20 +11,18 @@ import React, { useEffect, useState } from 'react';function Body() {
         }
     };  return ( 
         <div className="services-container">
-        {/* <div>
-            <h1>Services</h1>
-        </div> */}
         
+            {/* <h1>Services</h1> */}
+        {/* <br></br>
         <br></br>
-        <br></br>
-        <br></br>
+        <br></br> */}
         {services.map((service) => (
             <div className="service-card" key={service.id}>
             <img className="service-image" src={service.image_url} alt={service.name} />
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p>Price: ${service.price}</p>
-            <button>BOOK APPOINTMENT </button>
+            <button className='btn'>BOOK APPOINTMENT </button>
             </div>
         ))}
         </div>
