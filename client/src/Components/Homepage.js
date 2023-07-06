@@ -2,7 +2,7 @@ import React from 'react';
 
 function Homepage() {
     return (
-        <div className="entirePage" style={{ backgroundImage: "url('https://shorturl.at/jlmI7')", backgroundSize: 'cover', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>>
+        <div className="entirePage" style={{ backgroundImage: "url('https://shorturl.at/jlmI7')", backgroundSize: 'cover', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
 
                 <div className="aboutSection">
             

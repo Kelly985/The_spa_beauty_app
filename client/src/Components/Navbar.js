@@ -41,10 +41,8 @@ function Navbar() {
             <a className="navlink" href="/Appointment">
               Appointment
             </a>
-            <a className="navlink" href="/Footer">
-              Contact
-            </a>
-            <a
+
+            {/* <a
               className="navlink"
               href="#"
               onClick={() => {
@@ -54,7 +52,7 @@ function Navbar() {
               }}
             >
               Appointment
-            </a>
+            </a> */}
             {!isLoggedIn && (
               <a className="navlink" href="#" onClick={handleSignupClick}>
                 Sign Up
