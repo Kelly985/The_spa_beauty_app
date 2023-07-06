@@ -38,6 +38,9 @@ function Navbar() {
               <a className="navlink" href="/Services">
               Services
             </a>
+            <a className="navlink" href="/Appointment">
+              Appointment
+            </a>
             <a className="navlink" href="/contact">
               Contact
             </a>
