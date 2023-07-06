@@ -5,7 +5,7 @@ import Footer from './Components/Footer';
 import Homepage from './Pages/Homepage';
 import Services from './Pages/Services'
 import Navbar from './Components/Navbar';
-import Appointment from './Components/Appointment';
+import Appointment from './Pages/Appointment';
     
 
 function App() {
