@@ -5,7 +5,7 @@ import Footer from './Components/Footer';
 import Homepage from './Pages/Homepage';
 import Services from './Pages/Services'
 import Navbar from './Components/Navbar';
-
+import Appointment from './Components/Appointment';
     
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
      
       <Route path="/" element={<Homepage />} />
       <Route path="Services" element={<Services />} />
+      <Route path="Appointment" element={<Appointment />} />
     
     </Routes>
     </main>
