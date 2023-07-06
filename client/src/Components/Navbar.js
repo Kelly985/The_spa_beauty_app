@@ -27,7 +27,7 @@ function Navbar() {
 
   return (
     <div>
-      <h1 className="spa-title">SPA BEAUTY</h1>
+      <h1 className="spa-title">THE SPA BEAUTY SHOP</h1>
 
       <nav className="nav1">
         <ul className="navlink-left">

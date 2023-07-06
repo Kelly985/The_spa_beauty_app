@@ -2,8 +2,8 @@ import React from 'react';
 
 function Homepage() {
     return (
-        <div className="entirePage">
-            
+
+        <div className="entirePage" >
                 <div className="aboutSection">
                 <div className='title-top'  ><h1 >THE SPA BEAUTY SHOP</h1></div>
                 <br/>   

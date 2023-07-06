@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';function Body() {
+import React, { useEffect, useState } from 'react';
+function Body() {
     const [services, setServices] = useState([]);  useEffect(() => {
         fetchServices();
     }, []);  const fetchServices = async () => {

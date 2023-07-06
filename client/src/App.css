@@ -28,6 +28,7 @@ h1 {
   background-color: pink;
   color: black;
   font-size: 70px;
+  margin-top: 0;
 }
 .title-top{
   display: flex;
@@ -36,14 +37,16 @@ h1 {
 
 .nav1 {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: pink;
   padding: auto;
+  margin-top: -47px;
 }
 
 .navlink {
   margin-right: 10px;
+}
+.navlink-left{
+  margin-left: 350px;
 }
 
 .navlink-middle {
@@ -110,22 +113,22 @@ h1 {
   justify-content: center;
 }
 
-.aboutSection {
+/* .aboutSection {
   display: flex;
   align-items: center;
   justify-content: center;
   max-width: 800px;
   margin-right: 20px;
-}
+} */
 
-.content-container {
+/* .content-container {
   display: block;
   display: flex;
   width: 100%;
   height: 100%;
   align-items: flex-start;
-  /* Align items at the top */
-}
+  /* Align items at the top 
+} */
 
 /* .text-container {
   flex: 200;
@@ -136,13 +139,13 @@ h1 {
   margin-right: 20%;
 }  */
 
-.h2 {
-  /* margin-left: 0px; */
+/* .h2 {
+  /* margin-left: 0px; 
   font-size: 35px;
   margin-left: 100px;
   margin-top: 150px;
   width: 80%;
-}
+} */
 
 .slideshow-container {
   /* margin-left: 20%; */
@@ -155,27 +158,27 @@ h1 {
   margin-top: 0px;
 }
 
-.slideshow-card {
+/* .slideshow-card {
   width: 500px;
-  /* Adjust the width as per your preference */
+  /* Adjust the width as per your preference 
   position: relative;
-}
+} */
 
-.slide {
+/* .slide {
   display: none;
   position: absolute;
   top: 0;
   left: 0;
-}
+} */
 
-.slide.active {
+/* .slide.active {
   display: block;
 }
 
 .slide img {
   width: 100%;
   height: auto;
-}
+} */
 
 .caption {
   position: absolute;
@@ -217,9 +220,9 @@ img {
   z-index: 1;
 }
 
-.entirePage {
+/* .entirePage {
   display: inline-block;
-}
+} */
 
 .tittle-top {
   width: 100%;
@@ -247,7 +250,8 @@ img {
   border: 1px solid #000000;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 70px ;
   width: 250px;
   height: auto;
   display: inline-block;
@@ -279,3 +283,6 @@ img {
   border-radius: 10px;
 }
 
+.entirePage{
+  background-image: url('https://shorturl.at/jlmI7');
+}
