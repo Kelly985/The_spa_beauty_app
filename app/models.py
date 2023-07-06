@@ -13,7 +13,6 @@ class User(db.Model):
     name = Column(String(50))
     email = Column(String(50))
     password = Column(String(255))
-
     # The services relationship
     services = relationship('Service',
                             secondary=appointments_services,
@@ -23,7 +22,7 @@ class User(db.Model):
 class Service(db.Model):
     __tablename__ = 'services'
     id = Column(Integer, primary_key=True)
-    image_url = Column(String(5000))
+    image_url = Column(String(255))
     name = Column(String(50))
     price = Column(Integer)
     description = Column(String(255))

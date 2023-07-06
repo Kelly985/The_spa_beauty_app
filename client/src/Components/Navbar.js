@@ -1,135 +1,28 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-
-function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Create an object with the login data
-    const data = {
-      email: email,
-      password: password,
-    };
-
-    // Make a POST request to the login endpoint
-    axios
-      .post('/login', data)
-      .then((response) => {
-        // Handle the response from the server
-        console.log(response.data);
-        // Show a success message or redirect the user to a new page
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.error(error);
-        // Show an error message to the user
-      });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
-      </label>
-      <br />
-      <button type="submit">Login</button>
-    </form>
-  );
-}
-
-function SignupForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Create an object with the signup data
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    // Make a POST request to the signup endpoint
-    axios
-      .post('/signup', data)
-      .then((response) => {
-        // Handle the response from the server
-        console.log(response.data);
-        // Show a success message or redirect the user to a new page
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.error(error);
-        // Show an error message to the user
-      });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
-      </label>
-      <br />
-      <button type="submit">Sign Up</button>
-    </form>
-  );
-}
+import React, { useState, useEffect } from 'react';
+import SignupForm from './signup';
+import LoginForm from './login';
+import Appointment from './appointments';
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
+  const [showAppointments, setShowAppointments] = useState(false);
 
-  const handleLoginClick = () => {
-    setShowLoginForm(true);
+  useEffect(() => {
+    // Set the showLoginForm and showSignupForm state variables to false after the component is mounted.
+    setShowLoginForm(false);
     setShowSignupForm(false);
-  };
+  }, []);
 
   const handleSignupClick = () => {
     setShowLoginForm(false);
     setShowSignupForm(true);
+  };
+
+  const handleLoginClick = () => {
+    setShowLoginForm(true);
+    setShowSignupForm(false);
   };
 
   return (
@@ -145,39 +38,59 @@ function Navbar() {
             <a className="navlink" href="/contact">
               Contact
             </a>
-            <a className="navlink" href="/appointment">
+            <a
+              className="navlink"
+              href="#"
+              onClick={() => {
+                setShowAppointments(true);
+                setShowLoginForm(false);
+                setShowSignupForm(false);
+              }}
+            >
               Appointment
             </a>
-          </li>
-        </ul>
-        <div className="dropdown">
-          <span className="navlink-right dropdown-trigger">
-            Register
-            <div className="dropdown-content">
-              <a href="#signup" onClick={handleSignupClick}>
+            {!isLoggedIn && (
+              <a className="navlink" href="#" onClick={handleSignupClick}>
                 Sign Up
               </a>
-              <a href="#login" onClick={handleLoginClick}>
-                Login
+            )}
+            {!isLoggedIn && (
+              <a className="navlink" href="#" onClick={handleLoginClick}>
+                Log In
               </a>
-            </div>
-          </span>
-        </div>
+            )}
+            {isLoggedIn && (
+              <a className="navlink" href="/logout">
+                Logout
+              </a>
+            )}
+          </li>
+        </ul>
       </nav>
 
-      {showLoginForm && (
+      {isLoggedIn && (
         <div className="form-container">
-          <h2>Login Form</h2>
-          <LoginForm />
+          <h2>You are logged in!</h2>
+        </div>
+      )}
+      {!isLoggedIn && (
+        <div className="form-container">
+          {showLoginForm && (
+            <div>
+              <h2>Login Form</h2>
+              <LoginForm />
+            </div>
+          )}
+          {showSignupForm && (
+            <div>
+              <h2>Signup Form</h2>
+              <SignupForm />
+            </div>
+          )}
         </div>
       )}
 
-      {showSignupForm && (
-        <div className="form-container">
-          <h2>Signup Form</h2>
-          <SignupForm />
-        </div>
-      )}
+      {showAppointments && <Appointment />}
     </div>
   );
 }
