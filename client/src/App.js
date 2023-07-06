@@ -9,17 +9,11 @@ import Services from './Components/Services'
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       <Homepage />
       <Body/>
       <Services />
       <Footer />
 
-=======
-      <Navbar />
-      <Body />
-      
->>>>>>> 320f01f02119f20bd07fecb27b0372427cc82f0a
     </div>
   );
 }

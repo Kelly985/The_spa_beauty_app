@@ -18,7 +18,6 @@ h1{
 }
 /* CSS for the Navbar component */
 
-<<<<<<< HEAD
 .spa-title {
   text-align: center;
   background-color: pink;
@@ -187,11 +186,6 @@ img {
   padding: 0%;
   border-radius: 20px;
 }
-=======
-.navlink-right:hover .dropdown-content {
-  display: block;
-}
->>>>>>> 320f01f02119f20bd07fecb27b0372427cc82f0a
 
 .dropdown-content {
   display: none;
@@ -202,7 +196,6 @@ img {
   z-index: 1;
 }
 
-<<<<<<< HEAD
 .entirePage{
   display: inline-block;
 }
@@ -233,72 +226,3 @@ img {
   height: 200px;
   object-fit: cover;
 }
-=======
-/* drop of sign log */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-/* med screen */
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.form-container h2 {
-  margin-bottom: 2rem;
-  font-size: 24px;
-  color: #333;
-}
-
-.form-container form {
-  width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-}
-
-.form-container label {
-  display: block;
-  margin-bottom: 1rem;
-  color: #555;
-  font-size: 16px;
-}
-
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="password"] {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.form-container button[type="submit"] {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.form-container button[type="submit"]:hover {
-  background-color: #0056b3;
-}
->>>>>>> 320f01f02119f20bd07fecb27b0372427cc82f0a
