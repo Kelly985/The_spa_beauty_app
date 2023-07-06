@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, render_template
 from flask_migrate import Migrate
 from models import db, User, Appointment, Service
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -83,6 +85,7 @@ def delete_user(user_id):
     db.session.commit()
 
     return jsonify({'message': 'User deleted successfully'})
+##############################################################################
 
 # Create a new appointment
 from datetime import datetime
@@ -138,71 +141,73 @@ def get_services_name():
     service_names = [service.name for service in services]
     return jsonify(service_names)
 
-# Create a new service
+
+###################################################################################################
+
+# # Route to create a new service
 @app.route('/services', methods=['POST'])
 def create_service():
-    name = request.json.get('name')
-    price = request.json.get('price')
-    description = request.json.get('description')
-    image_url = request.json.get('image_url')
-    # Perform any necessary validation or checks on the input data
-    # Create a new service
-    service = Service(name=name, price=price, description=description, image_url=image_url)
+    data = request.get_json()
+    service = Service(image_url=data['image_url'], name=data['name'], price=data['price'], description=data['description'])
     db.session.add(service)
     db.session.commit()
-    return jsonify({'message': 'Service created successfully'})
+    return jsonify({'message': 'Service created successfully.'}), 201
 
-# Get all services
+# Route to retrieve all services
 @app.route('/services', methods=['GET'])
-def get_services():
+def get_all_services():
     services = Service.query.all()
-    service_list = []
+    result = []
     for service in services:
-        service_data = {
+        result.append({
             'id': service.id,
+            'image_url': service.image_url,
             'name': service.name,
             'price': service.price,
-            'description': service.description,
-            'image_url': service.image_url
-        }
-        service_list.append(service_data)
-    return jsonify(service_list)
-# Get a specific service by ID
+            'description': service.description
+        })
+    return jsonify(result), 200
+
+# Route to retrieve a specific service
 @app.route('/services/<int:service_id>', methods=['GET'])
 def get_service(service_id):
     service = Service.query.get(service_id)
-    if service is None:
-        return jsonify({'error': 'Service not found'}), 404
-    service_data = {
-        'id': service.id,
-        'name': service.name,
-        'price': service.price,
-        'description': service.description,
-        'image_url': service.image_url
-    }
-    return jsonify(service_data)
-# Update a service by ID
+    if service:
+        return jsonify({
+            'id': service.id,
+            'image_url': service.image_url,
+            'name': service.name,
+            'price': service.price,
+            'description': service.description
+        }), 200
+    else:
+        return jsonify({'message': 'Service not found.'}), 404
+
+# Route to update a specific service
 @app.route('/services/<int:service_id>', methods=['PUT'])
 def update_service(service_id):
     service = Service.query.get(service_id)
-    if service is None:
-        return jsonify({'error': 'Service not found'}), 404
-    # Update service data based on request JSON payload
-    service.name = request.json.get('name', service.name)
-    service.price = request.json.get('price', service.price)
-    service.description = request.json.get('description', service.description)
-    service.image_url = request.json.get('image_url', service.image_url)
-    db.session.commit()
-    return jsonify({'message': 'Service updated successfully'})
-# Delete a service by ID
+    if service:
+        data = request.get_json()
+        service.image_url = data['image_url']
+        service.name = data['name']
+        service.price = data['price']
+        service.description = data['description']
+        db.session.commit()
+        return jsonify({'message': 'Service updated successfully.'}), 200
+    else:
+        return jsonify({'message': 'Service not found.'}), 404
+
+# Route to delete a specific service
 @app.route('/services/<int:service_id>', methods=['DELETE'])
 def delete_service(service_id):
     service = Service.query.get(service_id)
-    if service is None:
-        return jsonify({'error': 'Service not found'}), 404
-    db.session.delete(service)
-    db.session.commit()
-    return jsonify({'message': 'Service deleted successfully'})
+    if service:
+        db.session.delete(service)
+        db.session.commit()
+        return jsonify({'message': 'Service deleted successfully.'}), 200
+    else:
+        return jsonify({'message': 'Service not found.'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

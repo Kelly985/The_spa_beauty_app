@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';function Body() {
         fetchServices();
     }, []);  const fetchServices = async () => {
         try {
-        const response = await fetch('http://localhost: 5555/services');
+        const response = await fetch('http://localhost:5000/services');
         const data = await response.json();
         setServices(data);
         } catch (error) {
