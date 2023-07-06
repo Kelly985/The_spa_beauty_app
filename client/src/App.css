@@ -235,11 +235,17 @@ img {
 .services-container {
   display: flex;
   flex-wrap: wrap;
+  width: 1000px;
+  height: 1200px;
+  margin-left: 30%;
+  margin-top: 5%;
+  justify-content: space-between;
 }
 
 .service-card {
   width: 200px;
-  margin: 10px;
+  margin-bottom: 20px;
+  /* Adjust the value to set the desired vertical spacing between cards */
   padding: 10px;
   border: 1px solid #ccc;
 }

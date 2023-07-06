@@ -9,9 +9,12 @@ import React, { useEffect, useState } from 'react';function Body() {
         } catch (error) {
         console.log('Error fetching services:', error);
         }
-    };  return (
+    };  return ( 
         <div className="services-container">
-        <h1>Services</h1>
+        {/* <div>
+            <h1>Services</h1>
+        </div> */}
+        
         <br></br>
         <br></br>
         <br></br>

@@ -41,7 +41,7 @@ function Navbar() {
             <a className="navlink" href="/Appointment">
               Appointment
             </a>
-            <a className="navlink" href="/contact">
+            <a className="navlink" href="/Footer">
               Contact
             </a>
             <a
