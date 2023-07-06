@@ -147,8 +147,8 @@ h1 {
   width: 80%;
 } */
 
-.slideshow-container {
-  /* margin-left: 20%; */
+/* .slideshow-container {
+  /* margin-left: 20%; 
   padding: 10px;
   margin-right: 10%;
   width: 600px;
@@ -156,7 +156,7 @@ h1 {
   height: 10px;
   margin-bottom: 40%;
   margin-top: 0px;
-}
+} */
 
 /* .slideshow-card {
   width: 500px;
@@ -197,12 +197,12 @@ h1 {
 }
 
 /* Image styles */
-img {
+/* img {
   width: 10cm;
   height: 10cm;
   gap: 20px;
   border-radius: 30px 30px 30px 30px;
-}
+} */
 
 .images1 {
   /* display: flex; */
@@ -282,7 +282,15 @@ img {
   background-color: rgb(255, 218, 218);
   border-radius: 10px;
 }
+.h2{
+  font-size: 20px;
+  font-style: oblique;
+  font-weight: 800;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  margin-top: 0;
 
-.entirePage{
-  background-image: url('https://shorturl.at/jlmI7');
 }
+
+
+

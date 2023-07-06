@@ -51,8 +51,8 @@ function SignupForm() {
       });
   };
   
-
   return (
+    <div className='sign'>
     <form onSubmit={handleSubmit}>
       <label>
         Name:
@@ -83,7 +83,9 @@ function SignupForm() {
       <br />
       <button type="submit">Sign Up</button>
     </form>
+    </div>
   );
 }
 
 export default SignupForm;
+
