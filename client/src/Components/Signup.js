@@ -1,5 +1,29 @@
 import React, { useState } from 'react';
 
+const styles = {
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  label: {
+    margin: '0.5rem',
+  },
+  input: {
+    padding: '0.5rem',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+  },
+  button: {
+    padding: '0.5rem 1rem',
+    borderRadius: '4px',
+    border: 'none',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    cursor: 'pointer',
+  },
+};
+
 function SignupForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -53,39 +77,41 @@ function SignupForm() {
   
   return (
     <div className='sign'>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-        />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Sign Up</button>
-    </form>
+      <form style={styles.form} onSubmit={handleSubmit}>
+        <label style={styles.label}>
+          Name:
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            style={styles.input}
+          />
+        </label>
+        <br />
+        <label style={styles.label}>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            style={styles.input}
+          />
+        </label>
+        <br />
+        <label style={styles.label}>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            style={styles.input}
+          />
+        </label>
+        <br />
+        <button type="submit" style={styles.button}>Sign Up</button>
+      </form>
     </div>
   );
 }
 
 export default SignupForm;
-
