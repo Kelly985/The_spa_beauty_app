@@ -26,13 +26,14 @@ class Service(db.Model):
     name = Column(String(50))
     price = Column(Integer)
     description = Column(String(255))
-    # The appointments relationship
-    appointments = relationship('Appointment', secondary=appointments_services)
+    appointments = relationship('Appointment', back_populates='service')
+
 class Appointment(db.Model):
     __tablename__ = 'appointments'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))  # Added foreign key constraint
-    # The user relationship
+    user_id = Column(Integer, ForeignKey('users.id'))
+    service_id = Column(Integer, ForeignKey('services.id'))
+    date = Column(String(50))
+    total_amount = Column(Integer)  # New column for the total amount
     user = relationship('User', backref='appointments')
-    # The services relationship
-    services = relationship('Service', secondary=appointments_services, backref='service_appointments')
+    service = relationship('Service', back_populates='appointments')

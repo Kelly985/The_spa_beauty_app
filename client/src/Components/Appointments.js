@@ -1,102 +1,100 @@
 import React, { useState, useEffect } from 'react';
 
-function Appointments() {
+function AppointmentsForm() {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState('');
-  const [date, setDate] = useState('');
   const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
+  const [date, setDate] = useState('');
+  const [appointmentId, setAppointmentId] = useState(null);
 
-  // Fetch services from the Flask API
   useEffect(() => {
-    fetch('/services_name')
-      .then(response => response.json())
-      .then(data => setServices(data))
-      .catch(error => console.error(error));
+    fetchServices();
   }, []);
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const fetchServices = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/services');
+      const data = await response.json();
+      setServices(data);
+    } catch (error) {
+      console.log('Error fetching services:', error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create an object with the appointment data
-    const data = {
-      service: selectedService,
-      date: date,
-      name: name
-    };
+    // Check if the name exists in the users table
+    const response = await fetch(`http://localhost:5000/users?name=${name}`);
+    const usersData = await response.json();
 
-    // Make a POST request to the Flask API
-    const url = '/appointments';
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    };
+    if (usersData.length > 0) {
+      const userId = usersData[0].id;
 
-    fetch(url, options)
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response from the server
-        if (data.message === 'Appointment created successfully') {
-          setMessage('Appointment created successfully');
-          // Clear the form fields
-          setSelectedService('');
-          setDate('');
-          setName('');
-        } else {
-          setMessage('Failed to create appointment');
-        }
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error(error);
-        setMessage('An error occurred while creating the appointment');
+      // Create the appointment
+      const appointmentData = {
+        user_id: userId,
+        service_id: selectedService,
+        date: date, // Include the date in the appointment data
+      };
+
+      const appointmentResponse = await fetch('http://localhost:5000/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(appointmentData),
       });
-  };
 
-  // Handle service selection
-  const handleServiceChange = (e) => {
-    setSelectedService(e.target.value);
-  };
-
-  // Handle date selection
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-
-  // Handle name input
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+      const appointmentResult = await appointmentResponse.json();
+      setAppointmentId(appointmentResult.id);
+    } else {
+      console.log('User not found');
+    }
   };
 
   return (
-    <div>
-      <h2>Appointments</h2>
+    <div className="appointments-form">
+      <h2>Book an Appointment</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="service">Service:</label>
-          <select id="service" value={selectedService} onChange={handleServiceChange}>
-            {services.map((service, index) => (
-              <option key={index} value={service}>{service}</option>
+          <select
+            id="service"
+            value={selectedService}
+            onChange={(e) => setSelectedService(e.target.value)}
+          >
+            <option value="">Select a service</option>
+            {services.map((service) => (
+              <option key={service.id} value={service.id}>
+                {service.name}
+              </option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="date">Date:</label>
-          <input type="date" id="date" value={date} onChange={handleDateChange} />
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
         <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" value={name} onChange={handleNameChange} />
+          <label htmlFor="date">Date:</label>
+          <input
+            type="date"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
-        <button type="submit">Create Appointment</button>
+        <button type="submit">Submit</button>
       </form>
-      {message && <p>{message}</p>}
+      {appointmentId && <p>Appointment ID: {appointmentId}</p>}
     </div>
   );
 }
 
-export default Appointments;
+export default AppointmentsForm;

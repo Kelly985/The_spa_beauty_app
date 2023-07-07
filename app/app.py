@@ -92,32 +92,17 @@ from datetime import datetime
 
 @app.route('/appointments', methods=['POST'])
 def create_appointment():
-    name = request.json.get('name')
-    service_id = request.json.get('service')
-    date_str = request.json.get('date')
+    data = request.json
+    user_id = data.get('user_id')
+    service_id = data.get('service_id')
+    date = data.get('date')
 
-    # Perform any necessary validation or checks on the input data
-
-    # Find the selected service
-    service = Service.query.get(service_id)
-    
-    if service is None:
-        return jsonify({'error': 'Invalid service ID'}), 400
-
-    # Convert the date string to a Python date object
-    date = datetime.strptime(date_str, '%Y-%m-%d').date()
-
-    # Create a new appointment
-    appointment = Appointment(
-        name=name,
-        services=[service],
-        date=date
-    )
+    # Create the appointment using the received data
+    appointment = Appointment(user_id=user_id, service_id=service_id, date=date)
     db.session.add(appointment)
     db.session.commit()
 
-    return jsonify({'message': 'Appointment created successfully'})
-
+    return jsonify({'id': appointment.id})
 
 # Get all appointments
 @app.route('/appointments', methods=['GET'])
@@ -208,6 +193,20 @@ def delete_service(service_id):
         return jsonify({'message': 'Service deleted successfully.'}), 200
     else:
         return jsonify({'message': 'Service not found.'}), 404
+
+@app.route('/appointments/total', methods=['POST'])
+def update_total_amount():
+    data = request.json
+    appointment_id = data.get('appointment_id')
+    total_amount = data.get('total_amount')
+
+    appointment = Appointment.query.get(appointment_id)
+    if appointment:
+        appointment.total_amount = total_amount
+        db.session.commit()
+        return jsonify({'message': 'Total amount updated successfully'})
+
+    return jsonify({'message': 'Appointment not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

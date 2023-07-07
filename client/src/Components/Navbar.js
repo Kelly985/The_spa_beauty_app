@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import SignupForm from './signup';
 import LoginForm from './login';
 import Appointment from './Appointments';
+import Cart from './cart';
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [showAppointments, setShowAppointments] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [cart, setCart] = useState([]); // Add cart state
 
   useEffect(() => {
-    // Set the showLoginForm and showSignupForm state variables to false after the component is mounted.
     setShowLoginForm(false);
     setShowSignupForm(false);
   }, []);
@@ -25,6 +27,15 @@ function Navbar() {
     setShowSignupForm(false);
   };
 
+  const handleCartClick = () => {
+    setShowCart(!showCart);
+  };
+
+  const handleRemoveFromCart = (service) => {
+    const newCart = cart.filter((item) => item.service_id !== service.service_id);
+    setCart(newCart);
+  };
+
   return (
     <div>
       <h1 className="spa-title">SPA BEAUTY</h1>
@@ -35,8 +46,11 @@ function Navbar() {
             <a className="navlink" href="/">
               Home
             </a>
-              <a className="navlink" href="/Services">
+            <a className="navlink" href="/Services">
               Services
+            </a>
+            <a href="/cart" onClick={handleCartClick}>
+              Cart
             </a>
             <a className="navlink" href="/Appointment">
               Appointment
@@ -97,6 +111,7 @@ function Navbar() {
       )}
 
       {showAppointments && <Appointment />}
+      {showCart && <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart} />}
     </div>
   );
 }
