@@ -74,6 +74,7 @@ function Appointments() {
 
   return (
     <div>
+      <h2>Book a service</h2>
       <h2>Appointments</h2>
       <form onSubmit={handleSubmit}>
         <div>

@@ -23,7 +23,7 @@ function Body() {
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p>Price: ${service.price}</p>
-            <button className='btn'>BOOK APPOINTMENT </button>
+            {/* <button className='btn'>BOOK APPOINTMENT </button> */}
             </div>
         ))}
         </div>
