@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SignupForm from './signup';
-import LoginForm from './login';
+import SignupForm from './Signup';
+import LoginForm from './Login';
 import Appointment from './Appointments';
 import Cart from './cart';
 
