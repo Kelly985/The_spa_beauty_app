@@ -18,12 +18,12 @@ def seed_data():
         db.session.commit()
 
         # Create services
-        for i in range(10):
-            price = random.randint(10, 100)  # Generate a random price between 10 and 100
-            image_url = fake.image_url()  # Generate a fake image URL
-            service = Service(name=fake.job(), description=fake.sentence(), price=price, image_url=image_url)
-            db.session.add(service)
-        db.session.commit()
+        # for i in range(10):
+        #     price = random.randint(10, 100)  # Generate a random price between 10 and 100
+        #     image_url = fake.image_url()  # Generate a fake image URL
+        #     service = Service(name=fake.job(), description=fake.sentence(), price=price, image_url=image_url)
+        #     db.session.add(service)
+        # db.session.commit()
 
         # Create appointments and relationships
         for i in range(10):

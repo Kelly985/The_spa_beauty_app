@@ -54,8 +54,9 @@ function AppointmentsForm() {
   };
 
   return (
-    <div className="appointments-form">
-      <h2>Book an Appointment</h2>
+    <div>
+      <h2>Book a service</h2>
+      <h2>Appointments</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="service">Service:</label>

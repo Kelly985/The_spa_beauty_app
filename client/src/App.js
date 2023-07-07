@@ -1,34 +1,29 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer';
-import Homepage from './Pages/Homepage';
-import Services from './Pages/Services'
+import Homepage from './Components/Homepage';
+import Services from './Components/Services';
 import Navbar from './Components/Navbar';
-import Appointment from './Components/cart';
-    
+import Appointment from './Components/Appointments';
 
 function App() {
   return (
-  
-    
     <BrowserRouter>
-    <Navbar />
+      <Navbar />
 
-    <main>
-      <Routes>
-    
+      <main >
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="Services" element={<Services />} />
+          <Route path="Appointment" element={<Appointment />} />
+        </Routes>
+      </main>
 
-     
-      <Route path="/" element={<Homepage />} />
-      <Route path="Services" element={<Services />} />
-      <Route path="Appointment" element={<Appointment />} />
-    
-    </Routes>
-    </main>
-    <Footer />
+      <Footer />
     </BrowserRouter>
   );
 }
 
 export default App;
+

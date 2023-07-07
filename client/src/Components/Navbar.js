@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <div>
-      <h1 className="spa-title">SPA BEAUTY</h1>
+      <h1 className="spa-title">THE SPA BEAUTY SHOP</h1>
 
       <nav className="nav1">
         <ul className="navlink-left">
@@ -55,10 +55,8 @@ function Navbar() {
             <a className="navlink" href="/Appointment">
               Appointment
             </a>
-            <a className="navlink" href="/contact">
-              Contact
-            </a>
-            <a
+
+            {/* <a
               className="navlink"
               href="#"
               onClick={() => {
@@ -68,7 +66,7 @@ function Navbar() {
               }}
             >
               Appointment
-            </a>
+            </a> */}
             {!isLoggedIn && (
               <a className="navlink" href="#" onClick={handleSignupClick}>
                 Sign Up
