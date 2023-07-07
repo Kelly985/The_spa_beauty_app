@@ -1,5 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
+const styles = {
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  label: {
+    margin: '0.5rem',
+  },
+  input: {
+    padding: '0.5rem',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+  },
+  button: {
+    padding: '0.5rem 1rem',
+    borderRadius: '4px',
+    border: 'none',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    cursor: 'pointer',
+  },
+};
+
 function Appointments() {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState('');
@@ -76,24 +100,24 @@ function Appointments() {
     <div>
       <h2>Book a service</h2>
       <h2>Appointments</h2>
-      <form onSubmit={handleSubmit}>
+      <form style={styles.form} onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="service">Service:</label>
-          <select id="service" value={selectedService} onChange={handleServiceChange}>
+          <label style={styles.label} htmlFor="service">Service:</label>
+          <select id="service" value={selectedService} onChange={handleServiceChange} style={styles.input}>
             {services.map((service, index) => (
               <option key={index} value={service}>{service}</option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="date">Date:</label>
-          <input type="date" id="date" value={date} onChange={handleDateChange} />
+          <label style={styles.label} htmlFor="date">Date:</label>
+          <input type="date" id="date" value={date} onChange={handleDateChange} style={styles.input} />
         </div>
         <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" value={name} onChange={handleNameChange} />
+          <label style={styles.label} htmlFor="name">Name:</label>
+          <input type="text" id="name" value={name} onChange={handleNameChange} style={styles.input} />
         </div>
-        <button type="submit">Create Appointment</button>
+        <button type="submit" style={styles.button}>Create Appointment</button>
       </form>
       {message && <p>{message}</p>}
     </div>
