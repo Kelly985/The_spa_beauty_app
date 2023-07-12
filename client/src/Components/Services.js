@@ -49,7 +49,7 @@ function Services() {
       if (result.isConfirmed) {
         // Post the total to the database
         const data = {
-          appointment_id: 4, // Replace with the actual appointment ID
+          appointment_id: 5, // Replace with the actual appointment ID
           total_amount: total,
         };
   

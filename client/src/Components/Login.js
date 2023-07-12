@@ -24,9 +24,9 @@ function LoginForm() {
       .then((response) => {
         // Handle the response from the server
         if (response.status === 200) {
-          console.log('Login successful');
+          alert('Login successful');
         } else {
-          console.log('Login failed');
+          alert('Login failed');
         }
       })
       .catch((error) => {

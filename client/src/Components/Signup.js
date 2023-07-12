@@ -64,9 +64,9 @@ function SignupForm() {
       .then((response) => {
         // Handle the response from the server
         if (response.status === 200) {
-          console.log('Signup successful');
+          alert('Signup successful');
         } else {
-          console.log('Signup failed');
+          alert('Signup failed');
         }
       })
       .catch((error) => {
