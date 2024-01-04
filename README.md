@@ -85,26 +85,13 @@ THE SPA BEAUTY backend is built using the following technologies:
 These technologies work together to provide a secure, efficient, and reliable backend for THE SPA BEAUTY application.
 Support and Contact Details
 
-If you have any questions, encounter any issues, or have suggestions for improvement, please feel free to contact our support team. We are here to assist you and provide any necessary guidance.
-
-# Email: support@thespabeauty.com
-
-# Phone: +254 745750096
-
-# GitHub Repository: https://github.com/James-Kamau3/The-Spa-Beauty-project
-
-We value your feedback and strive to make THE SPA BEAUTY the best experience for our users. If you would like to contribute to the project or report any issues, please do not hesitate to reach out.
-License
 
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
 
-# Email: support@thespabeauty.com
-
-# Phone: +254 745750096
-
 # GitHub Repository: https://github.com/James-Kamau3/The-Spa-Beauty-project
+
 
 ## License
 
